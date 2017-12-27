@@ -1,8 +1,34 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ListTodos from "./components/ListTodos";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const muiTheme = getMuiTheme({
+    appBar: {
+        color: '#37517E',
+        height: 50
+    },
+});
+
+injectTapEventPlugin();
+
+const customHistory = createBrowserHistory();
+const Root = () => (
+    <MuiThemeProvider muiTheme={muiTheme}>
+        <Router history={customHistory}>
+            <div>
+                <Route path={'/'} component={ListTodos}/>
+            </div>
+        </Router>
+    </MuiThemeProvider>
+);
+
+
+ReactDOM.render(<Root/>, document.getElementById('root'));
 registerServiceWorker();
