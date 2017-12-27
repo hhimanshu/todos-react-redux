@@ -7,9 +7,9 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import ListTodos from "./components/ListTodos";
 import {createStore} from 'redux'
 import reducer from './reducers';
+import App from "./App";
 
 
 const store = createStore(reducer);
@@ -27,7 +27,7 @@ const Root = () => (
     <MuiThemeProvider muiTheme={muiTheme} store={store}>
         <Router history={customHistory}>
             <div>
-                <Route path={'/'} component={ListTodos}/>
+                <Route path={'/'} component={App}/>
             </div>
         </Router>
     </MuiThemeProvider>
