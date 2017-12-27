@@ -8,7 +8,11 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ListTodos from "./components/ListTodos";
+import {createStore} from 'redux'
+import reducer from './reducers';
 
+
+const store = createStore(reducer);
 const muiTheme = getMuiTheme({
     appBar: {
         color: '#37517E',
@@ -20,7 +24,7 @@ injectTapEventPlugin();
 
 const customHistory = createBrowserHistory();
 const Root = () => (
-    <MuiThemeProvider muiTheme={muiTheme}>
+    <MuiThemeProvider muiTheme={muiTheme} store={store}>
         <Router history={customHistory}>
             <div>
                 <Route path={'/'} component={ListTodos}/>
