@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import ListTodos from "../ListTodos";
 import {connect} from "react-redux";
-import {addTodo} from "../../actions/todos";
+import * as todoActions from "../../actions/todos";
+import {bindActionCreators} from "redux";
 
 
 class AddTodo extends Component {
@@ -15,7 +16,7 @@ class AddTodo extends Component {
 
     onClickSave = () => {
         console.log(`saving ${this.state.todo.title}`);
-        this.props.dispatch(addTodo(this.state.todo));
+        this.props.actions.addTodo(this.state.todo);
     };
 
     onTitleChange = (e) => {
@@ -55,10 +56,10 @@ let mapStateToProps = (state, ownProps) => {
     }
 };
 
-/*
-let mapDispatchToProps = () => {
-
+let mapDispatchToProps = (dispatch) => {
+    return {
+        actions: bindActionCreators(todoActions, dispatch)
+    };
 };
-*/
 
-export default connect(mapStateToProps)(AddTodo);
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);
