@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import ListTodos from "../ListTodos";
 import {connect} from "react-redux";
-import * as todoActions from "../../actions/todos";
+import * as todoActions from "../../../actions/todos";
 import {bindActionCreators} from "redux";
+import {AddForm} from "../presentation";
 
 
 class AddTodo extends Component {
@@ -25,28 +25,10 @@ class AddTodo extends Component {
         this.setState({todo: todo});
     };
 
-    todoRow = (todo, index) => {
-        return <div key={index}>{todo.title}</div>;
-    };
-
     render() {
-        return (
-            <div>
-                <h1>Todos</h1>
-                {this.props.todos.map(this.todoRow)}
-                <h2>Add ToDo</h2>
-                <input type='text'
-                       onChange={this.onTitleChange}
-                       value={this.state.todo.title}/>
-
-                <input type="submit"
-                       value="Add ToDo"
-                       className="btn btn-primary"
-                       onClick={this.onClickSave}/>
-
-                <ListTodos todos={[]}/>
-            </div>
-        );
+        return <AddForm title={this.state.title}
+                        onClickSave={this.onClickSave}
+                        onTitleChange={this.onTitleChange}/>;
     }
 }
 

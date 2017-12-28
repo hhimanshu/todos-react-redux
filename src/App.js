@@ -1,6 +1,6 @@
 import React from 'react'
-import AddTodo from "./components/AddTodo";
-import ApplicationBar from "./components/ApplicationBar";
+import AddTodo from "./features/AddTodo/container";
+import ApplicationBar from "./features/ApplicationBar";
 import {Drawer, MenuItem} from "material-ui";
 import {bindActionCreators} from "redux";
 import * as titleActions from "./actions/appBar";
