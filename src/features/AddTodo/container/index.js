@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import * as todoActions from "../../../actions/todos";
+import * as titleActions from "../../../actions/appBar";
 import {bindActionCreators} from "redux";
 import {AddForm} from "../presentation";
 
@@ -14,9 +15,13 @@ class AddTodo extends Component {
         }
     }
 
+    componentWillMount() {
+        this.props.changeTitle('New ToDo');
+    }
+
     onClickSave = () => {
         console.log(`saving ${this.state.todo.title}`);
-        this.props.actions.addTodo(this.state.todo);
+        this.props.addTodo(this.state.todo);
     };
 
     onTitleChange = (e) => {
@@ -40,7 +45,8 @@ let mapStateToProps = (state, ownProps) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators(todoActions, dispatch)
+        addTodo: bindActionCreators(todoActions.addTodo, dispatch),
+        changeTitle: bindActionCreators(titleActions.changeTitle, dispatch)
     };
 };
 

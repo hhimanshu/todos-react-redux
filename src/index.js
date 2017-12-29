@@ -10,6 +10,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from "./App";
 import {Provider} from 'react-redux';
 import configureStore from "./store";
+import ListTodos from "./features/ListTodos/container";
+import AddTodo from "./features/AddTodo/container";
+
 
 const store = configureStore();
 
@@ -29,6 +32,8 @@ const Root = () => (
             <Router history={customHistory}>
                 <div>
                     <Route path={'/'} component={App}/>
+                    <Route path={'/list'} component={ListTodos}/>
+                    <Route path={'/add'} component={AddTodo}/>
                 </div>
             </Router>
         </MuiThemeProvider>
